@@ -2618,9 +2618,8 @@ namespace F4VRBody
 					float newVecZ = _weapSave.rot.data[2][0];
 					float dotProd = oldVecX * newVecX + oldVecY * newVecY + oldVecZ * newVecZ; //dot product is equal to the cosine of the angle between multiplied by the maginitude of the vectors. Maths!
 					float magnitude = sqrtf(((oldVecX * oldVecX) + (oldVecY * oldVecY) + (oldVecZ * oldVecZ)) * ((newVecX * newVecX) + (newVecY * newVecY) + (newVecZ * newVecZ))); //sqrt(A)*sqrt(B)=sqrt(A*B)
-					//_MESSAGE(std::to_string(dotProd / magnitude).c_str());
-					//prevent dynamic grip if the rotation will be at or above 69 degrees, dirty melee fix. TODO replace with INI option? and more proper way of detecting melee weapons?
-					if (dotProd >= (magnitude * 0.35836794954530027348413778941347)) { //cos(69) = 0.35836794954530027348413778941347
+					//prevent dynamic grip if the rotation will be above the user-specified maximum degrees. TODO more proper way of detecting melee weapons
+					if (dotProd >= (magnitude * maxDynamicGripAdjustmentCosine)) { 
 						weap->m_localTransform = _weapSave;
 
 						// rotate scope parent so it matches the dynamic grip

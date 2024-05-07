@@ -104,6 +104,8 @@ namespace F4VRBody {
 	bool c_dampenHands = true;
 	float c_dampenHandsRotation = 0.7;
 	float c_dampenHandsTranslation = 0.7;
+	float c_maxDynamicGripAdjustment = 69;
+	float maxDynamicGripAdjustmentCosine = cos(c_maxDynamicGripAdjustment * PI / 180);
 
 	float c_scopeAdjustDistance = 15.0f;
 
@@ -227,6 +229,8 @@ namespace F4VRBody {
 		c_verbose =              ini.GetBoolValue("Fallout4VRBody", "VerboseLogging");
 		c_armsOnly =             ini.GetBoolValue("Fallout4VRBody", "EnableArmsOnlyMode");
 		c_staticGripping         = ini.GetBoolValue("Fallout4VRBody", "EnableStaticGripping");
+		c_maxDynamicGripAdjustment = (float) ini.GetDoubleValue("Fallout4VRBody", "DynamicGripAdjustmentLimit", 69);
+		maxDynamicGripAdjustmentCosine = cos(c_maxDynamicGripAdjustment * PI / 180);
 		c_handUI_X = ini.GetDoubleValue("Fallout4VRBody", "handUI_X", 0.0);
 		c_handUI_Y = ini.GetDoubleValue("Fallout4VRBody", "handUI_Y", 0.0);
 		c_handUI_Z = ini.GetDoubleValue("Fallout4VRBody", "handUI_Z", 0.0);
@@ -1030,6 +1034,7 @@ namespace F4VRBody {
 		rc = ini.SetBoolValue("Fallout4VRBody", "hidePipboy", c_hidePipboy);
 		rc = ini.SetBoolValue("Fallout4VRBody", "EnableArmsOnlyMode", c_armsOnly);
 		rc = ini.SetBoolValue("Fallout4VRBody", "EnableStaticGripping", c_staticGripping);
+		rc = ini.SetDoubleValue("Fallout4VRBody", "DynamicGripAdjustmentLimit", c_maxDynamicGripAdjustment);
 		rc = ini.SetBoolValue("Fallout4VRBody", "HideTheHead", c_hideHead);
 		rc = ini.SetDoubleValue("Fallout4VRBody", "handUI_X", c_handUI_X);
 		rc = ini.SetDoubleValue("Fallout4VRBody", "handUI_Y", c_handUI_Y);

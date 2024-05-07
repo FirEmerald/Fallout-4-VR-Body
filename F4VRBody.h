@@ -90,6 +90,8 @@ namespace F4VRBody {
 	extern bool c_dampenHands;
 	extern float c_dampenHandsRotation;
 	extern float c_dampenHandsTranslation;
+	extern float c_maxDynamicGripAdjustment;
+	extern float maxDynamicGripAdjustmentCosine;
 
 	class BoneSphere {
 	public:
